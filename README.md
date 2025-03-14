@@ -1,5 +1,9 @@
 # quant-engine
 
+![Python](https://img.shields.io/badge/python-3.10+-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Tests](https://img.shields.io/badge/tests-passing-brightgreen.svg)
+
 Vectorised backtesting engine for systematic trading strategies. Built to research and validate multi-instrument strategies across equities and FX — not a wrapper around backtrader or zipline.
 
 ## Capabilities
