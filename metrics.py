@@ -55,5 +55,4 @@ def full_report(equity: pd.Series, trades: pd.DataFrame) -> dict:
         "n_trades": len(trades),
         "win_rate": win_rate(trades),
         "profit_factor": profit_factor(trades),
-        "avg_r": avg_r(trades),
     }

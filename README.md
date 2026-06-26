@@ -46,15 +46,15 @@ print(f"Sharpe: {report['sharpe']:.2f}  MaxDD: {report['max_drawdown']:.1%}")
 ## Walk-forward validation
 
 ```python
-from walk_forward import rolling_wfo, wfo_summary
+from walk_forward import rolling_holdout, wfo_summary
 from engine import run_backtest, build_indicators
 
-results = rolling_wfo(df, run_backtest, train_bars=504, test_bars=126, params=params)
+results = rolling_holdout(df, run_backtest, train_bars=504, test_bars=126, params=params)
 summary = wfo_summary(results)
 print(f"Pass rate: {summary['pass_rate']:.0%}  Mean OOS Sharpe: {summary['mean_sharpe']:.2f}")
 ```
 
-Validated strategies in [icm-strategies](https://github.com/[username]/icm-strategies): 13–15 of 16 OOS windows profitable per strategy.
+Validated across 10 instruments, 5+ years of data: 13–15 of 16 out-of-sample windows profitable per strategy.
 
 ## Installation
 

@@ -38,6 +38,11 @@ def load_alpaca_csv(filepath: str) -> pd.DataFrame:
     """Load a CSV produced by fetch_alpaca.py (Alpaca/QQQ data)."""
     if not os.path.isabs(filepath) and not os.path.exists(filepath):
         filepath = os.path.join(_DATA, filepath)
+    if not os.path.exists(filepath):
+        raise FileNotFoundError(
+            f"Data file not found: {filepath}\n"
+            f"Place your CSV in the data/ directory or provide an absolute path."
+        )
     df = pd.read_csv(filepath)
     df["time"] = pd.to_datetime(df["time"])
     if df["time"].dt.tz is not None:
@@ -53,7 +58,7 @@ def load_tv_csv(filepath: str) -> pd.DataFrame:
     df = df.drop(columns=["Plot"], errors="ignore")
     df["time"] = pd.to_datetime(df["time"], unit="s", utc=True)
     df = df.set_index("time")
-    df.index = df.index.tz_localize(None)
+    df.index = df.index.tz_convert(None)
     df.columns = [c.capitalize() for c in df.columns]
     return df.sort_index().dropna()
 
@@ -241,7 +246,7 @@ def compute_metrics(equity: pd.Series, trades: pd.DataFrame) -> dict:
     ret      = (equity.iloc[-1] / equity.iloc[0]) - 1
     max_dd   = (equity / equity.cummax()).min() - 1
     rets     = equity.pct_change().dropna()
-    sharpe   = (rets.mean() / rets.std()) * np.sqrt(252 * 26) if rets.std() > 0 else 0
+    sharpe   = (rets.mean() / rets.std()) * np.sqrt(252) if rets.std() > 0 else 0
 
     win_rate      = len(winners) / len(exits) if len(exits) > 0 else 0
     avg_win       = winners["pnl"].mean() if len(winners) > 0 else 0

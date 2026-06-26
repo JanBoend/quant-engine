@@ -4,7 +4,7 @@ import pandas as pd
 from typing import Callable
 
 
-def rolling_wfo(
+def rolling_holdout(
     data: pd.DataFrame,
     run_fn: Callable,
     train_bars: int,
@@ -12,7 +12,8 @@ def rolling_wfo(
     params: dict,
 ) -> list[dict]:
     """
-    Split data into rolling train/test windows, run run_fn on each.
+    Evaluates run_fn on rolling out-of-sample windows.
+    run_fn is called with fixed params — no in-sample optimisation is performed.
     run_fn(data, params) -> (equity: pd.Series, trades: pd.DataFrame)
     Returns list of dicts with window dates and out-of-sample metrics.
     """
@@ -23,7 +24,6 @@ def rolling_wfo(
     start = 0
 
     while start + train_bars + test_bars <= n:
-        train = data.iloc[start : start + train_bars]
         test  = data.iloc[start + train_bars : start + train_bars + test_bars]
 
         equity_oos, trades_oos = run_fn(test, params)
