@@ -4,7 +4,7 @@
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Tests](https://img.shields.io/badge/tests-passing-brightgreen.svg)
 
-> **Quant portfolio** — **quant-engine** · [icm-strategies](https://github.com/JanBoend/icm-strategies) · [market-regime-detector](https://github.com/JanBoend/market-regime-detector) · [options-pricer](https://github.com/JanBoend/options-pricer) · [portfolio-optimizer](https://github.com/JanBoend/portfolio-optimizer)
+> **Quant portfolio** — **quant-engine** · [market-regime-detector](https://github.com/JanBoend/market-regime-detector) · [options-pricer](https://github.com/JanBoend/options-pricer) · [portfolio-optimizer](https://github.com/JanBoend/portfolio-optimizer)
 
 Vectorised backtesting engine for systematic trading strategies. Built to research and validate multi-instrument strategies across equities and FX — not a wrapper around backtrader or zipline.
 
