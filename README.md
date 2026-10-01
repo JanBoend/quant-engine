@@ -1,22 +1,22 @@
 # quant-engine
 
+[![CI](https://github.com/JanBoend/quant-engine/actions/workflows/ci.yml/badge.svg)](https://github.com/JanBoend/quant-engine/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.10+-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
-![Tests](https://img.shields.io/badge/tests-passing-brightgreen.svg)
 
-> **Quant portfolio** — **quant-engine** · [market-regime-detector](https://github.com/JanBoend/market-regime-detector) · [options-pricer](https://github.com/JanBoend/options-pricer) · [portfolio-optimizer](https://github.com/JanBoend/portfolio-optimizer)
+Vectorised backtesting engine for multi-instrument systematic strategies. I wrote this instead of wrapping backtrader or zipline because I wanted full control over fill logic and walk-forward validation from day one.
 
-Vectorised backtesting engine for systematic trading strategies. Built to research and validate multi-instrument strategies across equities and FX — not a wrapper around backtrader or zipline.
+Part of a small set of tools: [market-regime-detector](https://github.com/JanBoend/market-regime-detector), [options-pricer](https://github.com/JanBoend/options-pricer), [portfolio-optimizer](https://github.com/JanBoend/portfolio-optimizer).
 
-## Capabilities
+## What's in it
 
-- Vectorised position simulation with full trade accounting (slippage, commissions, fractional sizing)
-- Risk-per-trade position sizing (fixed % of equity)
+- Vectorised position simulation with slippage, commissions, fractional sizing
+- Risk-per-trade sizing (fixed % of equity)
 - Daily loss limit halting
-- Walk-forward validation (rolling windows)
-- Tested across 10 instruments, 5+ years of data
+- Rolling-window walk-forward validation
+- Run across 10 instruments, 5+ years of data during development
 
-## Quick start
+## Usage
 
 ```python
 import yfinance as yf
@@ -60,15 +60,12 @@ summary = wfo_summary(results)
 print(f"Pass rate: {summary['pass_rate']:.0%}  Mean OOS Sharpe: {summary['mean_sharpe']:.2f}")
 ```
 
-Validated across 10 instruments, 5+ years of data: 13–15 of 16 out-of-sample windows profitable per strategy.
+13–15 of 16 out-of-sample windows profitable per strategy, across 10 instruments and 5+ years of data.
 
-## Installation
+## Install
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Examples
-
-- `examples/simple_ma.py` — MA crossover (minimal working example)
-- `examples/run_backtest.py` — full API walkthrough with report printing
+`examples/simple_ma.py` is the fastest way to see the API end to end. `examples/run_backtest.py` walks through the full report output.
