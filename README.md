@@ -6,7 +6,7 @@
 
 Vectorised backtesting engine for multi-instrument systematic strategies. I wrote this instead of wrapping backtrader or zipline because I wanted full control over fill logic and walk-forward validation from day one.
 
-Part of a small set of tools: [market-regime-detector](https://github.com/JanBoend/market-regime-detector), [options-pricer](https://github.com/JanBoend/options-pricer), [portfolio-optimizer](https://github.com/JanBoend/portfolio-optimizer).
+Part of a small set of tools: [market-regime-detector](https://github.com/JanBoend/market-regime-detector), [options-pricer](https://github.com/JanBoend/options-pricer), [factor-backtest](https://github.com/JanBoend/factor-backtest).
 
 ## What's in it
 
